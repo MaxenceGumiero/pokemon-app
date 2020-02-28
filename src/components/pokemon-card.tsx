@@ -1,13 +1,15 @@
 import React, { FunctionComponent, useState } from 'react';
 import Pokemon from '../models/pokemon';
 import './pokemon-card.css';
+import formatDate from '../helpers/format-date';
+import formatType from '../helpers/format-type';
 
 type Props = {
     pokemon: Pokemon,
     borderColor?: string
 }
 
-const PokemonCard: FunctionComponent<Props> = ({pokemon, borderColor = '#0d47a1'}) => {
+const PokemonCard: FunctionComponent<Props> = ({pokemon, borderColor = '#00C851'}) => {
     
     const [color, setColor] = useState<string>();
 
@@ -16,7 +18,7 @@ const PokemonCard: FunctionComponent<Props> = ({pokemon, borderColor = '#0d47a1'
     }
 
     const hideBorder = () => {
-        setColor('#4285F4');
+        setColor('#9e9e9e');
     }
 
     return(
@@ -28,7 +30,12 @@ const PokemonCard: FunctionComponent<Props> = ({pokemon, borderColor = '#0d47a1'
                 <hr/>
                 <h2 className="text-center">{pokemon.name}</h2>
                 <hr/>
-                <p>{pokemon.created.toString()}</p>
+                <p className="text-center">Ajouté le {formatDate(pokemon.created)}</p>
+                <div className="text-center">
+                    {pokemon.types.map(type => (
+                        <span key={type} className={formatType(type)}>{type}</span>
+                    ))}
+                </div>
             </div>
         </div>
     );
