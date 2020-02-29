@@ -30,6 +30,7 @@ const PokemonDetail: FunctionComponent<RouteComponentProps<Params>> = ({ match }
                     </div>
                     <hr/>
                     <h2 className="text-center">{pokemon.name}</h2>
+                    <p className="text-center"><strong><Link className="teal-text" to={`/pokemons/edit/${pokemon.id}`}>Éditer</Link></strong></p>
                     <hr/>
                     <p className="text-center">Ajouté le {formatDate(pokemon.created)}</p>
                     <div className="text-center">
@@ -37,6 +38,9 @@ const PokemonDetail: FunctionComponent<RouteComponentProps<Params>> = ({ match }
                             <span key={type} className={formatType(type)}>{type}</span>
                         ))}
                     </div>
+                    <br/>
+                    <p className="text-center">PV - {pokemon.hp}</p>
+                    <p className="text-center">Dégâts - {pokemon.cp}</p>
                     <hr/>
                     <Link to="/" className="btn text-white teal btn-block">Retour</Link>
                 </div>
